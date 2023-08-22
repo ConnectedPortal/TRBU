@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class DetectRoomChangeState : MonoBehaviour
 {
+    [SerializeField] private SwitchObjectsOffScreen objectsOffScreen;
     [SerializeField] private Transform player;
-    [SerializeField] private GameObject appearingObject; //TEST, SPLIT TO ANOTHER SCRIPT AFTER
-    private bool objectIsVisible = false;
+    private bool objectChanged = false;
     private bool playerInRoom = false;
     /// Detect if in the room
     /// Detect which state the room should be (3 room changes)
@@ -15,7 +15,7 @@ public class DetectRoomChangeState : MonoBehaviour
 
     private void Update()
     {
-        RoomChangeDetectTest();
+        RoomChangeTrigger();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,23 +34,10 @@ public class DetectRoomChangeState : MonoBehaviour
         }
     }
 
-    private void RoomChangeDetectTest()
+    private void RoomChangeTrigger()
     {
-        /*
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            objectIsVisible = true;
-            Debug.Log("AAAAAAAAAAAAA");
-        }
-        */
-
         if (playerInRoom)
         {
-            /*
-            Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-            Debug.DrawRay(ray.origin, ray.direction * 10);
-            */
-
             RaycastHit hitData;
 
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0)), out hitData, Mathf.Infinity))
@@ -59,10 +46,23 @@ public class DetectRoomChangeState : MonoBehaviour
                 
                 if(hitData.transform.CompareTag("Trigger"))
                 {
-                    appearingObject.SetActive(true);
-                    //Debug.Log("Did Hit");
+                    RoomChangeIsTriggered();
+                }
+                else
+                {
+                    objectChanged = false;
                 }
             }
+        }
+    }
+
+    private void RoomChangeIsTriggered()
+    {
+        if (!objectChanged)
+        {
+            objectsOffScreen.DeactivateObject();
+            objectChanged = true;
+            Debug.Log("Room Changed");
         }
     }
 }
