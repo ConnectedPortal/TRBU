@@ -40,7 +40,7 @@ public class Script_PlayerMovement : MonoBehaviour
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        if(isGrounded && playerVelocity.y < 0)
+        if(isGrounded)
         {
             playerVelocity.y = 0f;
         }
