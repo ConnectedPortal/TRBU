@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Environment\DoorInteraction.cs" />
+    <Compile Include="Assets\Scripts\Dialogue\DialogueTrigger.cs" />
     <Compile Include="Assets\Scripts\Environment\Script_FakeRoomFlip.cs" />
     <Compile Include="Assets\Scripts\Environment\Portals\PortalTextureFromCamera.cs" />
     <Compile Include="Assets\Scripts\Environment\Changing Objects\SwitchObjectsOffScreen.cs" />
@@ -65,12 +66,11 @@
     <Compile Include="Assets\Scripts\Player\Script_PlayerCamera.cs" />
     <Compile Include="Assets\Scripts\Environment\Portals\TeleportPlayerToPortal.cs" />
     <Compile Include="Assets\Scripts\Player\InteractionUIManager.cs" />
+    <Compile Include="Assets\Scripts\Dialogue\DialogueTextWriter.cs" />
     <Compile Include="Assets\Scripts\Environment\Portals\PortalCameraMovement.cs" />
     <Compile Include="Assets\Scripts\Player\Script_PlayerMovement.cs" />
-    <Compile Include="Assets\Scripts\Environment\Script_Test.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\DialogueTrigger.cs" />
-    <Compile Include="Assets\Scripts\Dialogue\DialogueTextWriter.cs" />
     <Compile Include="Assets\Scripts\Dialogue\Dialogue Containers\DialogueTextContainers.cs" />
+    <Compile Include="Assets\Scripts\Environment\Script_Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
