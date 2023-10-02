@@ -13,4 +13,13 @@ public class ChangeDialogueContainer : MonoBehaviour
         dialogueTrigger.dialogueContainer = dialogueContainer;
         dialogueTrigger.hasMemory = true;
     }
+
+    private void OnTriggerStay(Collider collider)
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            SwitchDialogueContainer();
+            this.gameObject.SetActive(false);
+        }
+    }
 }

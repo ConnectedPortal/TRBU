@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private GameManager gameManager;
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private DialogueTextWriter dialogueWriter;
+
+    [Header("Dialogue")]
     public DialogueTextContainers dialogueContainer;
     private bool isDialogueActive = false;
     private bool hasMemoryTriggered = false;
-    public bool hasMemory;
+    public bool hasMemory = false;
     public int currentTextLine = 0;
+
+    [Header("Cutscene")]
+    public bool willFocusOnObject = false;
+    [SerializeField] private GameObject targetObject;
 
     private void Start()
     {
@@ -47,6 +54,12 @@ public class DialogueTrigger : MonoBehaviour
         isDialogueActive = true;
         gameManager.isInCutscene = true;
 
+        if (willFocusOnObject)
+        {
+            gameManager.focusOnObject = true;
+            gameManager.objectTarget = targetObject;
+        }
+
         dialogueWriter.MessageRecieved(this, dialogueContainer);
     }
 
@@ -57,6 +70,8 @@ public class DialogueTrigger : MonoBehaviour
     {
         dialogueBox.SetActive(false);
         isDialogueActive = false;
+
         gameManager.isInCutscene = false;
+        gameManager.focusOnObject = false;
     }
 }

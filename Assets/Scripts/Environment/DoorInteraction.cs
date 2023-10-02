@@ -33,10 +33,23 @@ public class DoorInteraction : MonoBehaviour, IInteractable
         }
     }
 
+    private void OnTriggerExit(Collider collider)
+    {
+        if (collider.CompareTag("Player"))
+        {
+            if (doorOpened)
+            {
+                CloseDoor();
+                NotifyAll();
+                StartCoroutine("MinimumWait");
+            }
+        }
+    }
+
     private IEnumerator MinimumWait()
     {
         doorActive = false;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         //yield return null;
         doorActive = true;
     }

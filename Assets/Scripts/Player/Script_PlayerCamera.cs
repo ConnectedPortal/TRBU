@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Script_PlayerCamera : MonoBehaviour
 {
+    [Header("Cutscenes")]
+    private GameManager gameManager;
+
     [Header("Values")]
     [SerializeField] private float mouseSensitivity;
     [SerializeField] private Transform playerBody;
@@ -12,11 +15,13 @@ public class Script_PlayerCamera : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        gameManager = GameObject.FindObjectOfType<GameManager>();
     }
 
     void Update()
     {
-        CameraFollowCursor();
+        if (!gameManager.focusOnObject) CameraFollowCursor();
+        else CameraLookAtTarget();
     }
 
     private void CameraFollowCursor()
@@ -29,5 +34,11 @@ public class Script_PlayerCamera : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         playerBody.Rotate(Vector3.up * mouseX);
+    }
+
+    private void CameraLookAtTarget()
+    {
+        Quaternion targetRotation = Quaternion.LookRotation(gameManager.objectTarget.transform.position - transform.position);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 5f * Time.deltaTime);
     }
 }
