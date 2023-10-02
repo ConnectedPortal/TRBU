@@ -68,9 +68,12 @@
     <Compile Include="Assets\Scripts\Player\InteractionUIManager.cs" />
     <Compile Include="Assets\Scripts\Dialogue\DialogueTextWriter.cs" />
     <Compile Include="Assets\Scripts\Environment\Portals\PortalCameraMovement.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Player\Script_PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Dialogue\Dialogue Containers\DialogueTextContainers.cs" />
     <Compile Include="Assets\Scripts\Environment\Script_Test.cs" />
+    <Compile Include="Assets\Scripts\Dialogue\ChangeDialogueContainer.cs" />
+    <Compile Include="Assets\Scripts\Dialogue\ChangeDialogueTrigger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

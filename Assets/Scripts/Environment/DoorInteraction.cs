@@ -36,7 +36,8 @@ public class DoorInteraction : MonoBehaviour, IInteractable
     private IEnumerator MinimumWait()
     {
         doorActive = false;
-        yield return null;
+        yield return new WaitForSeconds(1f);
+        //yield return null;
         doorActive = true;
     }
 

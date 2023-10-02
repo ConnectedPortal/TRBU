@@ -6,6 +6,7 @@ public class Script_PlayerMovement : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private CharacterController controller;
+    [SerializeField] private GameManager gameManager;
 
     [Header("Movement Values")]
     [SerializeField] private float playerSpeed = 15f;
@@ -22,7 +23,11 @@ public class Script_PlayerMovement : MonoBehaviour
     void Update()
     {
         GroundCheck();
-        Movement();
+
+        if (!gameManager.isInCutscene)
+        {
+            Movement();
+        }
     }
 
     private void Movement()
