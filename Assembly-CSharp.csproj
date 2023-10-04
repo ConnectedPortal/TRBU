@@ -68,13 +68,15 @@
     <Compile Include="Assets\Scripts\Environment\Portals\TeleportPlayerToPortal.cs" />
     <Compile Include="Assets\Scripts\Player\InteractionUIManager.cs" />
     <Compile Include="Assets\Scripts\Dialogue\DialogueTextWriter.cs" />
+    <Compile Include="Assets\Scripts\Menus\PauseMenu.cs" />
+    <Compile Include="Assets\Scripts\Player\Inventory System\InventorySystem.cs" />
     <Compile Include="Assets\Scripts\Environment\Portals\PortalCameraMovement.cs" />
-    <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Player\Script_PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Dialogue\Dialogue Containers\DialogueTextContainers.cs" />
     <Compile Include="Assets\Scripts\Environment\Script_Test.cs" />
-    <Compile Include="Assets\Scripts\Managers\InventoryManager.cs" />
-    <Compile Include="Assets\Scripts\Menus\PauseMenu.cs" />
+    <Compile Include="Assets\Scripts\Player\Inventory System\KeyItemData.cs" />
+    <Compile Include="Assets\Scripts\Player\Inventory System\ItemPickUpMessenger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

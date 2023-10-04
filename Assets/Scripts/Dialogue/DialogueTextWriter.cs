@@ -8,7 +8,6 @@ public class DialogueTextWriter : MonoBehaviour
     private DialogueTrigger dialogueTrigger;
     public DialogueTextContainers dialogueContainer;
     [SerializeField] private TextMeshProUGUI dialogueText;
-    //private int index = 0;
     public bool isDialogueFinished = false;
     private bool firstLineWritten = false;
 
@@ -21,7 +20,6 @@ public class DialogueTextWriter : MonoBehaviour
     {
         dialogueText.text = string.Empty;
         firstLineWritten = false;
-        //index = 0;
     }
 
     public void MessageRecieved(DialogueTrigger trigger, DialogueTextContainers dialogue)
@@ -36,11 +34,6 @@ public class DialogueTextWriter : MonoBehaviour
         {
             if (dialogueTrigger.GetCurrentTextLine() < dialogueContainer.dialogue.Length)
             {
-                /*
-                dialogueText.text = dialogueContainer.dialogue[dialogueTrigger.GetCurrentTextLine()];
-                dialogueTrigger.IncreaseTextLine();
-                */
-
                 WriteDialogue(dialogueTrigger.GetCurrentTextLine());
             }
             else
