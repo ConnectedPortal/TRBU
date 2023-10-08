@@ -19,7 +19,6 @@ public class ChangeDialogueContainer : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             SwitchDialogueContainer();
-            this.gameObject.SetActive(false);
         }
     }
 }

@@ -17,8 +17,15 @@ public class ItemPickUpMessenger : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("Item Picked Up: " + keyItem.name);
+            OnPickupItem();
         }
+    }
+
+    private void OnPickupItem()
+    {
+        InventorySystem.current.Add(keyItem);
+        Debug.Log(keyItem.itemName + " Added to Inventory");
+        Destroy(gameObject);
     }
 
     //Change Interaction Text to Pick Up Message
