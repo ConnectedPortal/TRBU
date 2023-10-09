@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Menus")]
+    public bool isPaused = false;
+
+    [Header("Cutscenes")]
     public bool isInCutscene = false;
     public bool focusOnObject = false;
     public GameObject objectTarget = null;

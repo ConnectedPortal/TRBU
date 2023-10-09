@@ -4,30 +4,38 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject pauseMenuUI;
-    private bool isPaused = false;
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject controlsMenu;
+    private GameManager gameManager;
 
     private void Start()
     {
-        pauseMenuUI.SetActive(false);
+        gameManager = GameObject.FindObjectOfType<GameManager>();
+        pauseMenu.SetActive(false);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!isPaused)
+            if (!gameManager.isPaused)
             {
-                pauseMenuUI.SetActive(true);
+                pauseMenu.SetActive(true);
                 Time.timeScale = 0f;
-                isPaused = true;
+                gameManager.isPaused = true;
             }
-            else
+            else if (!controlsMenu.activeInHierarchy)
             {
-                pauseMenuUI.SetActive(false);
+                pauseMenu.SetActive(false);
                 Time.timeScale = 1f;
-                isPaused = false;
+                gameManager.isPaused = false;
             }
         }
+    }
+
+    public void ControlsMenu()
+    {
+        pauseMenu.SetActive(false);
+        controlsMenu.SetActive(true);
     }
 }
