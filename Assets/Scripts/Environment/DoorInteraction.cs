@@ -6,17 +6,36 @@ public class DoorInteraction : MonoBehaviour, IInteractable
 {
     private List<IObserver> observers = new List<IObserver>();
 
+    [Header("Input System")]
+    private PlayerControls playerControls;
+
+    [Header("Door References")]
     private bool doorActive = true;
     private bool doorOpened = false;
     [SerializeField] private Animator controller;
     [SerializeField] private string interactionOpenText = "Press E to Open Door";
     [SerializeField] private string interactionClosedText = "Press E to Close Door";
 
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+    }
+
+    private void OnEnable()
+    {
+        playerControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Disable();
+    }
+
     private void OnTriggerStay(Collider collider)
     {
         if (collider.CompareTag("Player"))
         {
-            if (Input.GetKeyDown(KeyCode.E) && doorActive)
+            if (playerControls.Gameplay.Interaction.triggered && doorActive)
             {
                 if(!doorOpened)
                 {

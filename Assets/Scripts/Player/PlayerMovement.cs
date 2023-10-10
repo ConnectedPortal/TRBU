@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("References")]
     [SerializeField] private CharacterController controller;
     [SerializeField] private GameManager gameManager;
+    private PlayerControls playerControls;
 
     [Header("Movement Values")]
     [SerializeField] private float playerSpeed = 15f;
@@ -19,6 +20,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask groundMask;
     private bool isGrounded;
 
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+    }
+
+    private void OnEnable()
+    {
+        playerControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Disable();
+    }
 
     void Update()
     {
@@ -32,11 +47,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Movement()
     {
+        /*
         float inputX = Input.GetAxis("Horizontal");
         float inputZ = Input.GetAxis("Vertical");
+        */
+        Vector2 moveInput = playerControls.Gameplay.Movement.ReadValue<Vector2>();
 
-        Vector3 move = transform.right * inputX + transform.forward * inputZ;
-        controller.Move(move * playerSpeed * Time.deltaTime);
+        //Vector3 move = transform.right * inputX + transform.forward * inputZ;
+        Vector3 movement = transform.right * moveInput.x + transform.forward * moveInput.y;
+
+        controller.Move(movement * playerSpeed * Time.deltaTime);
         playerVelocity.y += gravity * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
     }

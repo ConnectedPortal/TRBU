@@ -4,9 +4,28 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
+    [Header("Input System")]
+    private PlayerControls playerControls;
+
+    [Header("UI")]
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject controlsMenu;
     private GameManager gameManager;
+
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+    }
+
+    private void OnEnable()
+    {
+        playerControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Disable();
+    }
 
     private void Start()
     {
@@ -16,7 +35,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (playerControls.Gameplay.Menu.triggered)
         {
             if (!gameManager.isPaused)
             {

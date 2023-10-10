@@ -5,11 +5,30 @@ using TMPro;
 
 public class DialogueTextWriter : MonoBehaviour
 {
+    [Header("Input System")]
+    private PlayerControls playerControls;
+
+    [Header("Text Writer")]
     private DialogueTrigger dialogueTrigger;
     public DialogueTextContainers dialogueContainer;
     [SerializeField] private TextMeshProUGUI dialogueText;
     public bool isDialogueFinished = false;
     private bool firstLineWritten = false;
+
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+    }
+
+    private void OnEnable()
+    {
+        playerControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Disable();
+    }
 
     private void Start()
     {
@@ -30,7 +49,7 @@ public class DialogueTextWriter : MonoBehaviour
     
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && firstLineWritten)
+        if (playerControls.Gameplay.Interaction.triggered && firstLineWritten)
         {
             if (dialogueTrigger.GetCurrentTextLine() < dialogueContainer.dialogue.Length)
             {

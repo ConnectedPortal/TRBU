@@ -4,9 +4,28 @@ using UnityEngine;
 
 public class ControlsMenu : MonoBehaviour
 {
+    [Header("Input System")]
+    private PlayerControls playerControls;
+
+    [Header("UI")]
     private GameManager gameManager;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject controlsMenu;
+
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+    }
+
+    private void OnEnable()
+    {
+        playerControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Disable();
+    }
 
     //Get buttons to change text according to the key bound to the controls
 
@@ -18,7 +37,7 @@ public class ControlsMenu : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (playerControls.Gameplay.Menu.triggered)
         {
             PauseMenu();
         }

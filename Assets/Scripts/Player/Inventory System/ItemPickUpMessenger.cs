@@ -4,9 +4,28 @@ using UnityEngine;
 
 public class ItemPickUpMessenger : MonoBehaviour
 {
+    [Header("Input System")]
+    private PlayerControls playerControls;
+
+    [Header("Item References")]
     private InventorySystem inventorySystem;
     public KeyItemData keyItem;
     [SerializeField] private string interactionText = "Press E to Pick Up"; //Add Item Name from keyItem
+
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+    }
+
+    private void OnEnable()
+    {
+        playerControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Disable();
+    }
 
     private void Start()
     {
@@ -15,7 +34,7 @@ public class ItemPickUpMessenger : MonoBehaviour
 
     private void OnTriggerStay(Collider collider)
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (playerControls.Gameplay.Interaction.triggered)
         {
             OnPickupItem();
         }
